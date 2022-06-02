@@ -70,11 +70,12 @@ export class AuthController {
         return this.userService.findOne({id:data['id']});
     }
 
+    //logout user
+
     @UseGuards(AuthGuard)
     @Post('logout')
     async logout(@Res({passthrough:true}) response: Response){
         response.clearCookie('jwt');
-
         return {
             message: 'success'
         }

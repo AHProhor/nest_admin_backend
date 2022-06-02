@@ -5,7 +5,7 @@ import { UserUpdateDto } from "./models/user-update.dto";
 export declare class UserController {
     private userService;
     constructor(userService: UserService);
-    all(): Promise<User[]>;
+    all(page?: number): Promise<User[]>;
     create(body: UserCreateDto): Promise<User>;
     getSingle(id: number): Promise<User>;
     updateUser(id: number, body: UserUpdateDto): Promise<User>;
