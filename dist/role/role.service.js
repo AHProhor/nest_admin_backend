@@ -25,6 +25,7 @@ let RoleService = class RoleService {
         return this.roleRepository.find();
     }
     async create(data) {
+        console.log(data);
         return this.roleRepository.save(data);
     }
     async findOne(condition) {

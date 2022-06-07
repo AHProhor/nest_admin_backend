@@ -31,7 +31,7 @@ __decorate([
         inverseJoinColumn: { name: 'permission_id', referencedColumnName: 'id' }
     }),
     __metadata("design:type", Array)
-], Role.prototype, "permission", void 0);
+], Role.prototype, "permissions", void 0);
 Role = __decorate([
     (0, typeorm_1.Entity)('roles')
 ], Role);
