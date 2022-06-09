@@ -35,7 +35,7 @@ let UserController = class UserController {
         this.userService = userService;
     }
     async all(page = 1) {
-        return this.userService.paginate(page);
+        return this.userService.paginate(page, ['role']);
     }
     async create(body) {
         const password = await bcrypt.hash('1234', 12);
@@ -43,7 +43,7 @@ let UserController = class UserController {
         return this.userService.create(Object.assign(Object.assign({}, data), { password, role: { id: role_id } }));
     }
     async getSingle(id) {
-        return this.userService.findOne({ id });
+        return this.userService.findOne({ id }, ['role']);
     }
     async updateUser(id, body) {
         const { role_id } = body, data = __rest(body, ["role_id"]);

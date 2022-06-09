@@ -29,14 +29,12 @@ let RoleController = class RoleController {
         });
     }
     async getSingle(id) {
-        return this.roleService.findOne({ id });
+        return this.roleService.findOne({ id }, ['permissions']);
     }
     async updateRole(id, name, ids) {
-        await this.roleService.update(id, {
-            name,
-            permissions: ids.map(id => ({ id }))
-        });
-        return this.roleService.findOne({ id });
+        await this.roleService.update(id, { name });
+        const role = await this.roleService.findOne({ id });
+        return this.roleService.create(Object.assign(Object.assign({}, role), { permissions: ids.map(id => ({ id })) }));
     }
     async delete(id) {
         return this.roleService.delete(id);

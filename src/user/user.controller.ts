@@ -15,6 +15,7 @@ import {UserCreateDto} from "./models/user-create.dto";
 import {AuthGuard} from "../auth/auth.guard";
 import {UserUpdateDto} from "./models/user-update.dto";
 import {query} from "express";
+import {PaginatedResult} from "../common/paginated-result.interface";
 
 
 
@@ -26,8 +27,8 @@ export class UserController {
 
     //Get all users
     @Get()
-    async all(@Query('page') page = 1): Promise<User[]>{
-        return this.userService.paginate(page);
+    async all(@Query('page') page = 1){
+        return this.userService.paginate(page, ['role']);
     }
 
     //create user
@@ -47,7 +48,7 @@ export class UserController {
     //get single user
     @Get(':id')
     async getSingle(@Param('id') id:number){
-        return this.userService.findOne({id});
+        return this.userService.findOne({id}, ['role']);
     }
 
     //update user

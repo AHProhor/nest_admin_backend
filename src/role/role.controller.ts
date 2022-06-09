@@ -36,7 +36,7 @@ export class RoleController {
     //get single Role
     @Get(':id')
     async getSingle(@Param('id') id:number){
-        return this.roleService.findOne({id});
+        return this.roleService.findOne({id}, ['permissions']);
     }
 
     //update Role
@@ -46,12 +46,14 @@ export class RoleController {
         @Body('name') name:string,
         @Body('permissions') ids: number[]
     ){
-        await this.roleService.update(id, {
-            name,
+        await this.roleService.update(id, {name});
+
+        const role = await  this.roleService.findOne({id});
+
+        return this.roleService.create({
+            ...role,
             permissions: ids.map(id => ({id}))
         })
-
-        return this.roleService.findOne({id});
     }
 
     //delete Role
