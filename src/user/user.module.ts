@@ -5,11 +5,13 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
   import {AuthGuard} from "@nestjs/passport";
   import {CommonModule} from "../common/common.module";
+  import {AuthModule} from "../auth/auth.module";
 
 @Module({
   imports:[
     TypeOrmModule.forFeature([User]),
-      CommonModule
+      CommonModule,
+      AuthModule
   ],
   controllers: [UserController],
   providers: [UserService],
