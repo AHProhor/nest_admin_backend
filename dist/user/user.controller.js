@@ -31,6 +31,7 @@ const user_create_dto_1 = require("./models/user-create.dto");
 const auth_guard_1 = require("../auth/auth.guard");
 const user_update_dto_1 = require("./models/user-update.dto");
 const auth_service_1 = require("../auth/auth.service");
+const has_permission_decorator_1 = require("../permission/has-permission.decorator");
 let UserController = class UserController {
     constructor(userService, authService) {
         this.userService = userService;
@@ -74,6 +75,7 @@ let UserController = class UserController {
 };
 __decorate([
     (0, common_1.Get)(),
+    (0, has_permission_decorator_1.HasPermission)('view_users'),
     __param(0, (0, common_1.Query)('page')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

@@ -19,6 +19,7 @@ import {query} from "express";
 import {PaginatedResult} from "../common/paginated-result.interface";
 import {AuthService} from "../auth/auth.service";
 import {Request} from "Express"
+import {HasPermission} from "../permission/has-permission.decorator";
 
 
 @UseInterceptors(ClassSerializerInterceptor)
@@ -31,6 +32,7 @@ export class UserController {
 
     //Get all users
     @Get()
+    @HasPermission('view_users')
     async all(@Query('page') page = 1){
         return this.userService.paginate(page, ['role']);
     }
