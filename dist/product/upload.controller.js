@@ -20,8 +20,10 @@ const path_1 = require("path");
 let UploadController = class UploadController {
     uploadFile(file) {
         console.log(file.path);
+        const url = `http://localhost:3000/api/${file.path}`;
+        const clean_url = url.replace(/([^:]\/)\/+/g, "$1");
         return {
-            url: `http://localhost:3000/api/${file.path}`
+            url: clean_url
         };
     }
     async getImage(path, res) {

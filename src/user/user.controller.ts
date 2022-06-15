@@ -32,13 +32,14 @@ export class UserController {
 
     //Get all users
     @Get()
-    @HasPermission('view_users')
+    @HasPermission('users')
     async all(@Query('page') page = 1){
         return this.userService.paginate(page, ['role']);
     }
 
     //create user
     @Post()
+    @HasPermission('users')
     async create(@Body() body: UserCreateDto): Promise<User>{
         const password = await bcrypt.hash('1234',12);
 
@@ -53,6 +54,7 @@ export class UserController {
 
     //get single user
     @Get(':id')
+    @HasPermission('users')
     async getSingle(@Param('id') id:number){
         return this.userService.findOne({id}, ['role']);
     }
@@ -94,6 +96,7 @@ export class UserController {
 
     //update user
     @Put(':id')
+    @HasPermission('users')
     async updateUser(
         @Param('id') id:number,
         @Body() body: UserUpdateDto
@@ -111,6 +114,7 @@ export class UserController {
 
     //delete user
     @Delete(':id')
+    @HasPermission('users')
     async delete(@Param('id') id:number){
         return this.userService.delete(id)
     }

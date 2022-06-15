@@ -10,11 +10,16 @@ import { UploadController } from './product/upload.controller';
 import { OrderModule } from './order/order.module';
 import {APP_GUARD} from "@nestjs/core";
 import {PermissionGuard} from "./permission/permission.guard";
+import {RoleService} from "./role/role.service";
+import {PermissionService} from "./permission/permission.service";
 
 
 @Module({
   imports: [
     UserModule,
+    AuthModule,
+    CommonModule,
+    RoleModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -25,17 +30,16 @@ import {PermissionGuard} from "./permission/permission.guard";
       autoLoadEntities: true,
       synchronize: true,
     }),
-    AuthModule,
-    CommonModule,
-    RoleModule,
+
     PermissionModule,
     ProductModule,
-    OrderModule,
+    OrderModule
   ],
   providers:[
     {
       provide: APP_GUARD,
-      useClass: PermissionGuard
+      useClass: PermissionGuard,
+
     }
   ]
 })

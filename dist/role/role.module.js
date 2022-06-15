@@ -17,10 +17,11 @@ let RoleModule = class RoleModule {
 RoleModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([role_entity_1.Role])
+            typeorm_1.TypeOrmModule.forFeature([role_entity_1.Role]),
         ],
         controllers: [role_controller_1.RoleController],
-        providers: [role_service_1.RoleService]
+        providers: [role_service_1.RoleService],
+        exports: [role_service_1.RoleService]
     })
 ], RoleModule);
 exports.RoleModule = RoleModule;

@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RoleService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const role_entity_1 = require("./role.entity");
 const typeorm_2 = require("typeorm");
+const role_entity_1 = require("./role.entity");
 const abstract_service_1 = require("../common/abstract.service");
 let RoleService = class RoleService extends abstract_service_1.AbstractService {
     constructor(roleRepository) {
@@ -30,4 +30,5 @@ RoleService = __decorate([
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], RoleService);
 exports.RoleService = RoleService;
+;
 //# sourceMappingURL=role.service.js.map

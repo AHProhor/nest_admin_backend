@@ -24,6 +24,9 @@ AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             user_module_1.UserModule,
+            auth_module_1.AuthModule,
+            common_module_1.CommonModule,
+            role_module_1.RoleModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',
                 host: 'localhost',
@@ -34,17 +37,14 @@ AppModule = __decorate([
                 autoLoadEntities: true,
                 synchronize: true,
             }),
-            auth_module_1.AuthModule,
-            common_module_1.CommonModule,
-            role_module_1.RoleModule,
             permission_module_1.PermissionModule,
             product_module_1.ProductModule,
-            order_module_1.OrderModule,
+            order_module_1.OrderModule
         ],
         providers: [
             {
                 provide: core_1.APP_GUARD,
-                useClass: permission_guard_1.PermissionGuard
+                useClass: permission_guard_1.PermissionGuard,
             }
         ]
     })

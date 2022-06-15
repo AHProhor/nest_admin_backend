@@ -17,10 +17,12 @@ export class UploadController {
     }))
 
     uploadFile(@UploadedFile() file) {
-        console.log(file.path)
-        return{
-            url: `http://localhost:3000/api/${file.path}`
-        }
+        console.log(file.path);
+        const url =`http://localhost:3000/api/${file.path}`;
+        const clean_url = url.replace(/([^:]\/)\/+/g, "$1")
+        return {
+            url: clean_url
+        };
     }
 
     @Get('uploads/:path')
